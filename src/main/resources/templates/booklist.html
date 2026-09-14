@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 
 <head>
     <title>Book List</title>
@@ -10,16 +11,17 @@
 
     <h1>Books</h1>
 
-    <table>
+    <table class="table table-striped">
+
 
         <thead>
-        <tr>
-            <th>Author</th>
-            <th>Title</th>
-            <th>ISBN</th>
-            <th>Year</th>
-            <th>Price</th>
-        </tr>
+            <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>ISBN</th>
+                <th>Year</th>
+                <th>Price</th>
+            </tr>
         </thead>
 
         <tbody>
@@ -29,9 +31,15 @@
                 <td th:text="${book.isbn}"></td>
                 <td th:text="${book.publicationYear}"></td>
                 <td th:text="${book.price}"></td>
+                <td><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
+                <td><a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-warning">Edit Book</a></td>
+
             </tr>
         </tbody>
     </table>
+    <br>
+    <a href="/add" class="btn btn-success">Add Book</a>
+
 
 </body>
 
