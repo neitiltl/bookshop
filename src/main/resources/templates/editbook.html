@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 
 <head>
     <title>Edit Book</title>
@@ -40,7 +41,8 @@
                 <input type="text" id="price" th:field="*{price}" />
             </div>
 
-            <input type="submit" value="Save">
+            <br>
+            <input class="btn btn-success" type="submit" value="Save">
         </form>
     </div>
 
