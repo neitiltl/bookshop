@@ -22,21 +22,7 @@ public class BookstoreApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(BookRepository repository) {
-		return (args) -> {
-
-			log.info("save books");
-
-			Book s1 = new Book("Kirja1", "Kirjailija1", 2020, "1234567890123", 19.99);
-			Book s2 = new Book("Kirja2", "Kirjailija2", 2021, "1234567890124", 24.99);
-
-			repository.save(s1);
-			repository.save(s2);
-		};
-	}
-
-	@Bean
-	public CommandLineRunner demo2(CategoryRepository crepository) {
+	public CommandLineRunner demo2(CategoryRepository crepository, BookRepository repository) {
 
 		return (args) -> {
 
@@ -49,6 +35,16 @@ public class BookstoreApplication {
 			crepository.save(c1);
 			crepository.save(c2);
 			crepository.save(c3);
+
+			log.info("save books");
+
+			Book b1 = new Book("Kirja1", "Kirjailija1", 2020, "1234567890123", 19.99, c1);
+			Book b2 = new Book("Kirja2", "Kirjailija2", 2021, "1234567890124", 24.99, c2);
+			Book b3 = new Book("Kirja3", "Kirjailija3", 2022, "1234567890125", 29.99, c3);
+
+			repository.save(b1);
+			repository.save(b2);
+			repository.save(b3);
 		};
 	}
 
