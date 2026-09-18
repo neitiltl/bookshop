@@ -9,13 +9,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import backend.bookstore.domain.Book;
 import backend.bookstore.domain.BookRepository;
 
+import backend.bookstore.domain.CategoryRepository;
+
 @Controller
 public class BookController {
 
     private BookRepository repository;
+    private CategoryRepository cRepository;
 
-    public BookController(BookRepository repository) {
+    public BookController(BookRepository repository, CategoryRepository cRepository) {
         this.repository = repository;
+        this.cRepository = cRepository;
     }
 
     @GetMapping("/index")
@@ -34,6 +38,7 @@ public class BookController {
     @GetMapping("/add")
     public String addBook(Model model) {
         model.addAttribute("book", new Book());
+        model.addAttribute("categories", cRepository.findAll());
         return "addbook";
     }
 
