@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
+</html>
 
 
 <head>
@@ -10,7 +13,7 @@
 
 <body>
 
-    <h1>Books</h1>
+    <h1>Welcome to the bookstore, <span sec:authentication="name"></span>.</h1>
 
     <table class="table table-striped">
 
@@ -34,7 +37,8 @@
                 <td th:text="${book.publicationYear}"></td>
                 <td th:text="${book.price}"></td>
                 <td th:text="${book.category.name}"></td>
-                <td><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
+                <td sec:authorize="hasRole ('ADMIN')"><a th:href="@{/delete/{id}(id=${book.id})}"
+                        class="btn btn-danger">Delete</a></td>
                 <td><a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-warning">Edit Book</a></td>
 
             </tr>
@@ -42,6 +46,13 @@
     </table>
     <br>
     <a href="/add" class="btn btn-success">Add Book</a>
+
+    <br><br>
+
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Log Out" class="btn btn-danger" />
+    </form>
+
 
 
 </body>
